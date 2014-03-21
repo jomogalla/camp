@@ -1,0 +1,3 @@
+http://stackoverflow.com/questions/22313407/clang-error-unknown-argument-mno-fused-madd-python-package-installation-fa
+
+^ psycopg2 wasnt installing that helped

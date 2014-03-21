@@ -3,7 +3,7 @@
 	<title>camp climate</title>
 	<link rel="icon" type="image/icon" href="{{ STATIC_URL }}/static/images/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/static/styles_experiment.css">
-<script type="text/javascript" src="{{ STATIC_URL }}/static/jquery-1.8.3.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}/static/jquery-ui-1.9.2.custom.min.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -45,7 +45,7 @@
 			$('#rightMap').html('<iframe width="600" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q='+latitude+',+'+longitude+'&amp;hl=en&amp;ie=UTF8&amp;t=t&amp;ll='+latitude+','+ longitude +'&amp;spn=0.023746,0.051498&amp;z=12&amp;iwloc=z&amp;output=embed"></iframe><br /><small><a target="_blank" href="http://maps.google.com/maps?q='+ latitude+',+'+longitude+'&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll='+ latitude +',' + longitude+'&amp;spn=0.023746,0.051498&amp;z=14&amp;iwloc=near&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>');
 
 			//weather loading icon
-			$('#rightWeather').html('<img id="sunSpinner" src="{{ STATIC_URL }}/static/images/sun.gif" />');
+			$('#rightWeather').html('<img id="sunSpinner" src="{{ STATIC_URL }}/static/images/spinTran.gif" />');
 			//get weather
 			$.get('/weather/'+ latitude +'/' +  longitude +'/', function(data){
 				$('#rightWeather').html(data.weatherHTML);
@@ -86,7 +86,7 @@
 	<div id="banner">
 		<form action="" method="get" class="smallForm">
 			{{ form.as_ul }}
-			<input type="submit" value="go" id="goButton" >
+			<input type="submit" value="search" id="goButton" >
 		</form>
 		
 	</div>
@@ -114,6 +114,7 @@
 			{{farther}}
 		</div>
 		{% endif %}
+		{% if not notification and not possibleCityList and not farther%}
 		<div id="leftColumn">
 		{% for infoBlob in zipped %}
 			<div class="camp {% if forloop.last%}last{% endif %}" id="{{forloop.counter0}}" >
@@ -124,7 +125,7 @@
 				</span>
 			
 				<span class="distance" title="as the crow flies">
-					~{{infoBlob.distance}} mile{{infoBlob.distance|pluralize}}
+					~ {{infoBlob.distance}} mile{{infoBlob.distance|pluralize}}
 				</span>
 				<!-- QUESTION OF THE DAY: IS IT BETTER TO PUT THIS STUFF IN AN AJAX QUERY? OR JUST HIDE IT??? -->
 				<span id="latitude_{{forloop.counter0}}" class="hiddenData">{{infoBlob.campground.latitude}}</span>
@@ -152,7 +153,7 @@
 		<div id="rightColumn">
 			<div id="rightTitle">
 				<span id="campName" >{{zipped.0.campground.name}}   </span>
-				<span id="campDistance">	~{{zipped.0.distance}} mile{{zipped.0.distance|pluralize}}</span>
+				<span id="campDistance">~ {{zipped.0.distance}} mile{{zipped.0.distance|pluralize}}</span>
 				<div id="campType">	{{zipped.0.campground.TYEP}}</div>
 			</div>
 			<div id="rightMap">
@@ -178,6 +179,7 @@
 				</ul>
 			</div>
 		</div>
+		{% endif %}
 	</div>
 
 	<div id="spinner">
