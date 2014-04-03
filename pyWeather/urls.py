@@ -15,7 +15,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    ('^$', index),
+    # ('^$', index),
+    ('^$', camp_experiment),
     ('^camp/', camp),
     ('^camp_exp/', camp_experiment),
     ('^weather/(-?\d+?\.\d+)/(-?\d+?\.\d+)/', get_me_weather),

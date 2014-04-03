@@ -28,8 +28,10 @@ from django.http import HttpResponse
 from django.template import Context, loader
 
 class WeatherForm(forms.Form):
-	location = forms.CharField(error_messages={'required': 'required'})
-	distance = forms.DecimalField(error_messages={'required': 'required'})
+	location = forms.CharField(error_messages={'required': 'required'}, label='location', 
+                    widget=forms.TextInput(attrs={'placeholder': 'to search from', "title":"City, ST or zipcode"}))
+	distance = forms.DecimalField(error_messages={'required': 'required'}, label='distance', 
+                    widget=forms.TextInput(attrs={'placeholder': 'you want to travel', "title":"in miles"}))
 	# lessgreater = forms.BooleanField()
 
 class BigWeatherForm(forms.Form):
@@ -120,6 +122,7 @@ def index(request):
 def get_me_weather(request, latitude, longitude):
 	message = {"weatherHTML": ""}
 	if request.is_ajax():
+
 		forecast = oracle.get_forecast(latitude, longitude)
 		weatherHTML = render_to_string('./forecast.html', {'weather':forecast})
 		message['weatherHTML'] = weatherHTML
@@ -316,7 +319,7 @@ def camp_experiment(request):
 			if len(approvedcamp_set) > 0:
 				return render_to_response('./camp_experiment.html', {"camplist_length":len(approvedcamp_set), 'form': form, 'zipped': zipped})
 			else:
-				notification = 'Search farther...'
+				notification = 'search farther'
 				return render_to_response('./camp_experiment.html', {'form': form,'farther':notification})
 		else:
 			form = WeatherForm(request.GET)
@@ -396,74 +399,75 @@ def camp_humanizer(campground):
 		campground.TYEP = 'Authority'
 
 	#format the amenities to be human friendly
-	amenitiesList = campground.amenities.split()
-	humanFriendlyAmenities = []
-	for amenity in amenitiesList:
-		# RV HOOKUPS
-		if amenity == 'NH':
-			humanFriendlyAmenities.append('No Hookups')
-		elif amenity == 'E':
-			humanFriendlyAmenities.append('Electric Hookup')
-		elif amenity == 'W':
-			humanFriendlyAmenities.append('Water Hookup')
-		elif amenity == 'S':
-			humanFriendlyAmenities.append('Sewer Hookup')
-		elif amenity == 'WE':
-			humanFriendlyAmenities.append('Water & Electric Hookups')
-		elif amenity == 'ES':
-			humanFriendlyAmenities.append('Sewer & Electric Hookups')
-		elif amenity == 'WS':
-			humanFriendlyAmenities.append('Water & Sewer Hookups')
-		elif amenity == 'WES':
-			humanFriendlyAmenities.append('Water, Electric, & Sewer Hookups')
-		# Sanitary Dump
-		elif amenity == 'DP':
-			humanFriendlyAmenities.append('Sanitary Dump')
-		elif amenity == 'ND':
-			humanFriendlyAmenities.append('No Sanitary Dump')
-		# Max RV Length --- 
-		elif amenity[-2:] == 'ft':
-			humanFriendlyAmenities.append(amenity[:-2] + ' feet')
-		# Toilets
-		elif amenity == 'FT':
-			humanFriendlyAmenities.append('Flush Toilets')
-		elif amenity == 'VT':
-			humanFriendlyAmenities.append('Vault Toilets')
-		elif amenity == 'FTVT':
-			humanFriendlyAmenities.append('Flush & Vault Toilets')
-		elif amenity == 'PT':
-			humanFriendlyAmenities.append('Pit Toilets')
-		elif amenity == 'NT':
-			humanFriendlyAmenities.append('No Toilets')
-		elif amenity == 'W':
-			humanFriendlyAmenities.append('Water')
-		#Drinking Water
-		elif amenity == 'DW':
-			humanFriendlyAmenities.append('Drinking Water')
-		elif amenity == 'NW':
-			humanFriendlyAmenities.append('No Drinking Water')
-		# Showers
-		elif amenity == 'SH':
-			humanFriendlyAmenities.append('Showers')
-		elif amenity == 'NS':
-			humanFriendlyAmenities.append('No Showers')
-		#  Reservations
-		elif amenity == 'RS':
-			humanFriendlyAmenities.append('Accepts Reservations')
-		elif amenity == 'NR':
-			humanFriendlyAmenities.append('No Reservations')
-		# Pets
-		elif amenity == 'PA':
-			humanFriendlyAmenities.append('Pets Allowed')
-		elif amenity == 'NP':
-			humanFriendlyAmenities.append('No Pets Allowed')
-		# Fee
-		elif amenity == 'L$':
-			humanFriendlyAmenities.append('Less than $12')
-		elif amenity == 'N$':
-			humanFriendlyAmenities.append('No Fee')
-		else:
-			humanFriendlyAmenities.append(str(amenity))
+	if campground.amenities != None:
+		amenitiesList = campground.amenities.split()
+		humanFriendlyAmenities = []
+		for amenity in amenitiesList:
+			# RV HOOKUPS
+			if amenity == 'NH':
+				humanFriendlyAmenities.append('No Hookups')
+			elif amenity == 'E':
+				humanFriendlyAmenities.append('Electric Hookup')
+			elif amenity == 'W':
+				humanFriendlyAmenities.append('Water Hookup')
+			elif amenity == 'S':
+				humanFriendlyAmenities.append('Sewer Hookup')
+			elif amenity == 'WE':
+				humanFriendlyAmenities.append('Water & Electric Hookups')
+			elif amenity == 'ES':
+				humanFriendlyAmenities.append('Sewer & Electric Hookups')
+			elif amenity == 'WS':
+				humanFriendlyAmenities.append('Water & Sewer Hookups')
+			elif amenity == 'WES':
+				humanFriendlyAmenities.append('Water, Electric, & Sewer Hookups')
+			# Sanitary Dump
+			elif amenity == 'DP':
+				humanFriendlyAmenities.append('Sanitary Dump')
+			elif amenity == 'ND':
+				humanFriendlyAmenities.append('No Sanitary Dump')
+			# Max RV Length --- 
+			elif amenity[-2:] == 'ft':
+				humanFriendlyAmenities.append(amenity[:-2] + ' feet')
+			# Toilets
+			elif amenity == 'FT':
+				humanFriendlyAmenities.append('Flush Toilets')
+			elif amenity == 'VT':
+				humanFriendlyAmenities.append('Vault Toilets')
+			elif amenity == 'FTVT':
+				humanFriendlyAmenities.append('Flush & Vault Toilets')
+			elif amenity == 'PT':
+				humanFriendlyAmenities.append('Pit Toilets')
+			elif amenity == 'NT':
+				humanFriendlyAmenities.append('No Toilets')
+			elif amenity == 'W':
+				humanFriendlyAmenities.append('Water')
+			#Drinking Water
+			elif amenity == 'DW':
+				humanFriendlyAmenities.append('Drinking Water')
+			elif amenity == 'NW':
+				humanFriendlyAmenities.append('No Drinking Water')
+			# Showers
+			elif amenity == 'SH':
+				humanFriendlyAmenities.append('Showers')
+			elif amenity == 'NS':
+				humanFriendlyAmenities.append('No Showers')
+			#  Reservations
+			elif amenity == 'RS':
+				humanFriendlyAmenities.append('Accepts Reservations')
+			elif amenity == 'NR':
+				humanFriendlyAmenities.append('No Reservations')
+			# Pets
+			elif amenity == 'PA':
+				humanFriendlyAmenities.append('Pets Allowed')
+			elif amenity == 'NP':
+				humanFriendlyAmenities.append('No Pets Allowed')
+			# Fee
+			elif amenity == 'L$':
+				humanFriendlyAmenities.append('Less than $12')
+			elif amenity == 'N$':
+				humanFriendlyAmenities.append('No Fee')
+			else:
+				humanFriendlyAmenities.append(str(amenity))
 
-	campground.amenities = humanFriendlyAmenities
+		campground.amenities = humanFriendlyAmenities
 

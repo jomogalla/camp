@@ -70,14 +70,19 @@
 	margin: 0px;
 	padding: 0px;
 }
-
+.helper{
+	position: fixed;
+	background-color: green;
+}
 .errorlist{
-	color: #D86E66;
+	color: #B83126;
+	/*color: #D86E66;*/
 	font-weight: normal;
 	position: absolute;
 	font-size: 0.8em;
-	top:0.4em;
-	margin-left: 12em;
+	margin-top:2.6em;
+	margin-left: -1.1em;
+	display: none;
 	
 }
 #possibleCities ul li{
@@ -98,11 +103,15 @@
 }
 #farther{
 	margin: 0.5em;
-	margin-left: 1em;
+	margin-left: 40%;
+	margin-top: 20%;
 	font-size: 2em;
 	cursor: pointer;
-	color: #867246;
+	color: #645B49;
 	display: inline-block;
+}
+#farther:hover{
+	color: #867246;
 }
 .smallForm{
 	margin: 0;
@@ -119,7 +128,8 @@
 	/*box-shadow: 0 0 0.2em #A0714D;*/
 	/*border-top: 1px #aaaaaa solid;*/
 	line-height: 1.5em;
-	background-image:url(images/noisy-texture-light.png);
+	/*background-image:url(images/noisy-texture-light.png);*/
+	background-color: #FFFCF9;
 	box-shadow: inset 0px 1px 0.1em 0px #B3B3B3;
 	padding-left: 0.5em;
 }
@@ -153,24 +163,26 @@
 	/*background-image: url(images/bannerback.png);*/
 	background-repeat: repeat-x;
 	z-index: 100;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 #goButton{
-	/*border: 0px;*/
-	/*font-size: 1em;*/
-	border-radius: 2px;
+	border: 0px;
+	font-size: 1.4em;
+	/*border-radius: 2px;*/
 	/*font-weight: bold;*/
-	/*color: #262121;*/
+	color: #645B49;
 	/*width: 2em;*/
 	padding: 0px 5px 0px 5px;
 	padding-bottom: 0.1em;
 	/*background-image: url(images/buttonback.png);*/
-	box-shadow: 0 0 0 0;
-	border: 1px #C4C4C4 solid;
+	/*box-shadow: 0 0 0 0;*/
+	/*border: 1px #C4C4C4 solid;*/
 	cursor: pointer;
-	background-color: white;
+	background-color: transparent;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 #goButton:hover{
-
+	color: #867246;
 }
 .campgroundAmount{
 	/*float: right;*/
@@ -179,6 +191,12 @@
 	font-weight: normal;
 	color:#555555;
 	font-size: 1.5em;
+}
+#rightWeather i{
+	font-size: 8em;
+	width: 128px;
+	margin-left: auto;
+	margin-right: auto;
 }
 #page{
 	margin: 0 auto;
@@ -335,6 +353,10 @@
 	margin: 0.5em;
 	margin-left: 1em;
 	font-size: 2em;
+	margin-top: 70px;
+	color: #867F6C;
+	text-align: center;
+	margin-top: 20%;
 }
 .weatherTemps{
 	padding-top: 0.2em;
@@ -354,6 +376,9 @@
 	padding: 0em;
 	margin: 0em;
 }
+.clear{
+	clear: both;
+}
 .amenities li{
 	list-style-type: circle;
 	display: inline;
@@ -363,9 +388,12 @@
 }
 #spinner{
 	display: none;
-	width: 300px;
-	margin: auto;
-	padding-top: 4em;
+	width: 160px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 200px;
+	/*padding-top: 4em;*/
+	font-size: 10em;
 }
 #debug{
 	position: fixed;
@@ -384,6 +412,6 @@ body{
 	font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif;
 	color: #262121;
 	margin: 0px;
-	/*background-color: #FFF9F1;*/
-	background-image:url(images/noisy-texture.png);
+	background-color: #FFFCF9;
+	/*background-image:url(images/noisy-texture.png);*/
 }

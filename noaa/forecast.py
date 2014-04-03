@@ -31,6 +31,7 @@ def daily_forecast_by_lat_lon(lat, lon, start_date=None, num_days=6,
     :param num_days:
     :returns: [ForecastedCondition() ...]
     """
+    print 'yolo'
     location_info = [("lat", lat), ("lon", lon)]
     return _daily_forecast_from_location_info(
             location_info, start_date=start_date, num_days=num_days,

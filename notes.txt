@@ -1,3 +1,15 @@
 http://stackoverflow.com/questions/22313407/clang-error-unknown-argument-mno-fused-madd-python-package-installation-fa
 
 ^ psycopg2 wasnt installing that helped
+
+>>>>>>>> TO DO <<<<<<<<<<
+> add pygrib to requirements.txt (pygrib==1.9.9) - https://pypi.python.org/pypi/pygrib/1.9.9
+> Use data attributes to store lat & long, not hidden divs/spans
+> Fix Left column to always be 100% height
+> Add the Weekday to the forecast
+>
+
+
+<<<<<<<<  BUGS >>>>>>>>>>
+X Line 399, views.py, CHECK TO SEE if amenities even exists, right now it is trying to split a 'NoneType'
+> List of cities to choose from aint showing up

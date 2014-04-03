@@ -3,9 +3,27 @@
 	<title>camp climate</title>
 	<link rel="icon" type="image/icon" href="{{ STATIC_URL }}/static/images/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/static/styles_experiment.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}/static/jquery-ui-1.9.2.custom.min.js"></script>
 <script type="text/javascript">
+$( document ).ready(function(){
+	var longitude = $('#longitude_0').text();
+	var latitude = $('#latitude_0').text();
+	$('#rightWeather').html('<i class="fa fa-sun-o fa-spin"></i>');
+	// $('#rightWeather').html('<img id="sunSpinner" src="{{ STATIC_URL }}/static/images/spinTran.gif" />');
+	//get weather
+	$.get('/weather/'+ latitude +'/' +  longitude +'/', function(data){
+		$('#rightWeather').html(data.weatherHTML);
+	});	
+
+	// var location_coords = $('#id_location').position();
+	// var distance_coords = $('#id_distance').position();
+	// var button_coords = $('#goButton').position();
+
+	// $('#location_help').css('left', location_coords.left );
+	// $('#location_help').css('top', (location_coords.top + 36));
+});
 	$(function(){
 		// spinning animation hack
 		$("#goButton").click(function(){
@@ -45,7 +63,7 @@
 			$('#rightMap').html('<iframe width="600" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q='+latitude+',+'+longitude+'&amp;hl=en&amp;ie=UTF8&amp;t=t&amp;ll='+latitude+','+ longitude +'&amp;spn=0.023746,0.051498&amp;z=12&amp;iwloc=z&amp;output=embed"></iframe><br /><small><a target="_blank" href="http://maps.google.com/maps?q='+ latitude+',+'+longitude+'&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll='+ latitude +',' + longitude+'&amp;spn=0.023746,0.051498&amp;z=14&amp;iwloc=near&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>');
 
 			//weather loading icon
-			$('#rightWeather').html('<img id="sunSpinner" src="{{ STATIC_URL }}/static/images/spinTran.gif" />');
+			$('#rightWeather').html('<i class="fa fa-sun-o fa-spin"></i>');
 			//get weather
 			$.get('/weather/'+ latitude +'/' +  longitude +'/', function(data){
 				$('#rightWeather').html(data.weatherHTML);
@@ -86,17 +104,16 @@
 	<div id="banner">
 		<form action="" method="get" class="smallForm">
 			{{ form.as_ul }}
-			<input type="submit" value="search" id="goButton" >
+			<!-- <input type="submit" value="search" id="goButton" > -->
+			<button type="submit" id="goButton"><i class="fa fa-arrow-right"> </i></button>
 		</form>
 		
 	</div>
 	<div id="content">
-		{% if notification %}
+		{% if possibleCityList %}
 		<div class="notification">
 			{{notification}}
 		</div>
-		{% endif %}
-		{% if possibleCityList %}
 		<div id="possibleCities">
 			<ul>
 			{% for city in possibleCityList %}
@@ -108,13 +125,15 @@
 			{% endfor %}
 			</ul>
 		</div>
-		{% endif %}
-		{% if farther %}
-		<div id="farther">
-			{{farther}}
+		{% elif notification %}
+		<div class="notification">
+			{{notification}}
 		</div>
-		{% endif %}
-		{% if not notification and not possibleCityList and not farther%}
+		{% elif farther %}
+		<div id="farther">
+			{{farther}} <i class="fa fa-arrow-right"> </i>
+		</div>
+		{% elif zipped%}
 		<div id="leftColumn">
 		{% for infoBlob in zipped %}
 			<div class="camp {% if forloop.last%}last{% endif %}" id="{{forloop.counter0}}" >
@@ -146,6 +165,7 @@
 						{% endif %}
 					</ul>
 				</span>
+				<div class="clear"></div>
 				<!-- <a href="https://maps.google.com/maps?q=37.771008,+-122.41175+(You+can+insert+your+text+here)&iwloc=A&hl=en"></a> -->	
 			</div>	
 		{% endfor %}
@@ -179,10 +199,19 @@
 				</ul>
 			</div>
 		</div>
+		{% else %}
+		<div class="notification">
+			<p> Search for campgrounds! </p>
+<!-- 			<div id="location_help" class="helper">enter a city or zipcode</div>
+			<div id="distance_help" class="helper">enter how far you want to go</div>
+			<div id="search_help" class="helper">then search!</div> -->
+		</div>
 		{% endif %}
 	</div>
 
 	<div id="spinner">
-		<img src="{{ STATIC_URL }}/static/images/spinTran.gif" />
+		<!-- <img src="{{ STATIC_URL }}/static/images/spinTran.gif" /> -->
+		<!-- <i class="fa fa-sun-o fa-spin"></i> -->
+		<i class="fa fa-power-off fa-spin"></i>
 	</div>
 </body>
