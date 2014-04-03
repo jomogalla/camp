@@ -262,11 +262,15 @@ def camp_experiment(request):
 							state_name = city_name + ' ' +state_name
 						possibleCityList = City.objects.filter(name__iexact=state_name)
 						if len(possibleCityList) != 0:
-							notification = 'I didn\'t catch the state. Here\'s a list of cities to start with: ' 
+							if len(possibleCityList) == 1:
+								notification = 'I didn\'t catch the state. Does this city ring a bell?' 
+							else:
+								notification = 'I didn\'t catch the state. Do any of these cities ring a bell?' 
 							return render_to_response('./camp_experiment.html', {'form': form, 'notification':notification, 'possibleCityList':possibleCityList})
 						else:
 							notification = 'I can\'t find '
 							notification += state_name
+							notification += ', sorry'
 							return render_to_response('./camp_experiment.html', {'form': form, 'notification':notification})
 					except ObjectDoesNotExist:
 						notification = 'I can\'t seem to find that city'

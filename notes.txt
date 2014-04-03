@@ -7,7 +7,18 @@ http://stackoverflow.com/questions/22313407/clang-error-unknown-argument-mno-fus
 > Use data attributes to store lat & long, not hidden divs/spans
 > Fix Left column to always be 100% height
 > Add the Weekday to the forecast
->
+> CLEAN UP THIS MESS OF CODE
+> get the scripts in a file
+> move some of the custom messages out of view and into templates
+
+UI Updates -
+> make left column always full height
+> make right side always full width
+
+Features -
+> Sortable left column
+> about div
+
 
 
 <<<<<<<<  BUGS >>>>>>>>>>

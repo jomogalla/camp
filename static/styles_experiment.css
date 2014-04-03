@@ -17,6 +17,24 @@
 #rightMap iframe{
 	border: #fcfcfc 2px solid;
 }
+#info_box{
+	display: none;
+	position: absolute;
+	right: 10px;
+	top: 50px;
+	background-color: rgba(255, 249, 231, 0.95);
+	border-left: 1px solid #EEEDEC;
+	border-bottom: 1px solid #EEEDEC;
+	border-right: 1px solid #EEEDEC;
+	color: #645B49;
+	width: 300px;
+	padding: 5px;
+	box-shadow: 0px 5px 30px 1px rgba(133, 133, 133, 0.10);
+	text-align: center;
+}
+#info_box a{
+	color: black !important;
+}
 #rightWeather{
 	/*height: 10em;*/
 	border-top: 1px #999999 solid;
@@ -81,7 +99,7 @@
 	position: absolute;
 	font-size: 0.8em;
 	margin-top:2.6em;
-	margin-left: -1.1em;
+	margin-left: -1.25em;
 	display: none;
 	
 }
@@ -94,9 +112,13 @@
 	margin-bottom: 0.5em;
 	color: #867246;
 }
+#possibleCities ul li:hover{
+	color:#5C4410;
+}
 #possibleCities{
 	font-size: 1.3em;
 	/*padding-left: 1em;*/
+	text-align: center;
 }
 .none{
 	display: none !important;
@@ -153,8 +175,9 @@
 	background-color: #DFD4B9;
 	position: fixed;
 	top: 0px;
-	width: 100%;
+	/*width: 100%;*/
 	left: 0px;
+	right: 0px;
 	/*color: #Fcfcfc;*/
 	color: #645B49;
 	/*font-weight: bold;*/
@@ -192,11 +215,27 @@
 	color:#555555;
 	font-size: 1.5em;
 }
+#info{
+	float: right;
+	margin-top: 15px;
+	font-size: 1.2em;
+	cursor: pointer;
+	color: rgba(100, 91, 73, 0.45);
+}
+a{
+	text-decoration: none;
+	cursor: pointer;
+	color: #645B49 !important;
+}
+small a{
+	margin-left: 5px;
+}
 #rightWeather i{
 	font-size: 8em;
 	width: 128px;
 	margin-left: auto;
 	margin-right: auto;
+	color: #645B49;
 }
 #page{
 	margin: 0 auto;
@@ -394,6 +433,7 @@
 	margin-top: 200px;
 	/*padding-top: 4em;*/
 	font-size: 10em;
+	color: #645B49;
 }
 #debug{
 	position: fixed;

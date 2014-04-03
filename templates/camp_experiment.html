@@ -11,7 +11,6 @@ $( document ).ready(function(){
 	var longitude = $('#longitude_0').text();
 	var latitude = $('#latitude_0').text();
 	$('#rightWeather').html('<i class="fa fa-sun-o fa-spin"></i>');
-	// $('#rightWeather').html('<img id="sunSpinner" src="{{ STATIC_URL }}/static/images/spinTran.gif" />');
 	//get weather
 	$.get('/weather/'+ latitude +'/' +  longitude +'/', function(data){
 		$('#rightWeather').html(data.weatherHTML);
@@ -23,7 +22,15 @@ $( document ).ready(function(){
 
 	// $('#location_help').css('left', location_coords.left );
 	// $('#location_help').css('top', (location_coords.top + 36));
+		$("#info").click(function(){
+			$('#info_box').slideToggle();
+		});
+		$("#content").click(function(){
+			$('#info_box').slideUp();
+		});
 });
+
+
 	$(function(){
 		// spinning animation hack
 		$("#goButton").click(function(){
@@ -107,6 +114,9 @@ $( document ).ready(function(){
 			<!-- <input type="submit" value="search" id="goButton" > -->
 			<button type="submit" id="goButton"><i class="fa fa-arrow-right"> </i></button>
 		</form>
+		<div id="info">
+			<i class="fa fa-info-circle"></i>
+		</div>
 		
 	</div>
 	<div id="content">
@@ -121,6 +131,7 @@ $( document ).ready(function(){
 				{% if sameCities %}
 					- Population: {{city.population}}
 				{% endif %}
+				<i class="fa fa-arrow-right"> </i>
 				</li>
 			{% endfor %}
 			</ul>
@@ -177,7 +188,7 @@ $( document ).ready(function(){
 				<div id="campType">	{{zipped.0.campground.TYEP}}</div>
 			</div>
 			<div id="rightMap">
-				<iframe width="600" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q={{zipped.0.campground.latitude}},+{{zipped.0.campground.longitude}}&amp;hl=en&amp;ie=UTF8&amp;t=t&amp;ll={{zipped.0.campground.latitude}},{{zipped.0.campground.longitude}}&amp;spn=0.023746,0.051498&amp;z=12&amp;iwloc=z&amp;output=embed"></iframe><br /><small><a target="_blank" href="http://maps.google.com/maps?q={{zipped.0.campground.latitude}},+{{zipped.0.campground.longitude}}&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll={{zipped.0.campground.latitude}},{{zipped.0.campground.longitude}}&amp;spn=0.023746,0.051498&amp;z=14&amp;iwloc=near&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+				<iframe width="600" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q={{zipped.0.campground.latitude}},+{{zipped.0.campground.longitude}}&amp;hl=en&amp;ie=UTF8&amp;t=t&amp;ll={{zipped.0.campground.latitude}},{{zipped.0.campground.longitude}}&amp;spn=0.023746,0.051498&amp;z=12&amp;iwloc=z&amp;output=embed"></iframe><br /><small><a target="_blank" href="http://maps.google.com/maps?q={{zipped.0.campground.latitude}},+{{zipped.0.campground.longitude}}&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll={{zipped.0.campground.latitude}},{{zipped.0.campground.longitude}}&amp;spn=0.023746,0.051498&amp;z=14&amp;iwloc=near&amp;source=embed" style="color:#0000FF;text-align:left">view on google <i class="fa fa-external-link-square"></i></a></small>
 			</div>
 			<div id="rightWeather">
 
@@ -213,5 +224,19 @@ $( document ).ready(function(){
 		<!-- <img src="{{ STATIC_URL }}/static/images/spinTran.gif" /> -->
 		<!-- <i class="fa fa-sun-o fa-spin"></i> -->
 		<i class="fa fa-power-off fa-spin"></i>
+	</div>
+	<div id="info_box">
+		<p>
+			Search for campgrounds. Check the weather. Go camping.
+		</p>
+		<p>
+			Created by <br><a href="http://www.domogalla.org" target="_blank">Jason Domogalla</a>
+		</p>
+		<p>
+			Enjoy!
+		</p>
+		<p>
+			<a href="mailto:treksplit@gmail.com">Contact Me</a>
+		</p>
 	</div>
 </body>
