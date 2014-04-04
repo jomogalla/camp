@@ -24,9 +24,11 @@ $( document ).ready(function(){
 	// $('#location_help').css('top', (location_coords.top + 36));
 		$("#info").click(function(){
 			$('#info_box').slideToggle();
+			$('#info').toggleClass("expanded");
 		});
 		$("#content").click(function(){
 			$('#info_box').slideUp();
+			$('#info').removeClass("expanded");
 		});
 });
 
@@ -67,7 +69,7 @@ $( document ).ready(function(){
 			$('#rightDetails').html(campInfo);
 
 			// Switch out the map
-			$('#rightMap').html('<iframe width="600" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q='+latitude+',+'+longitude+'&amp;hl=en&amp;ie=UTF8&amp;t=t&amp;ll='+latitude+','+ longitude +'&amp;spn=0.023746,0.051498&amp;z=12&amp;iwloc=z&amp;output=embed"></iframe><br /><small><a target="_blank" href="http://maps.google.com/maps?q='+ latitude+',+'+longitude+'&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll='+ latitude +',' + longitude+'&amp;spn=0.023746,0.051498&amp;z=14&amp;iwloc=near&amp;source=embed" style="color:#0000FF;text-align:left">View Larger Map</a></small>');
+			$('#rightMap').html('<iframe width="600" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q='+latitude+',+'+longitude+'&amp;hl=en&amp;ie=UTF8&amp;t=t&amp;ll='+latitude+','+ longitude +'&amp;spn=0.023746,0.051498&amp;z=12&amp;iwloc=z&amp;output=embed"></iframe><br /><small><a target="_blank" href="http://maps.google.com/maps?q='+ latitude+',+'+longitude+'&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll='+ latitude +',' + longitude+'&amp;spn=0.023746,0.051498&amp;z=14&amp;iwloc=near&amp;source=embed" style="color:#0000FF;text-align:left">view on google <i class="fa fa-external-link-square"></i></a></small>');
 
 			//weather loading icon
 			$('#rightWeather').html('<i class="fa fa-sun-o fa-spin"></i>');
@@ -114,9 +116,12 @@ $( document ).ready(function(){
 			<!-- <input type="submit" value="search" id="goButton" > -->
 			<button type="submit" id="goButton"><i class="fa fa-arrow-right"> </i></button>
 		</form>
-		<div id="info">
+		<button id="info" class="banner_buttons">
 			<i class="fa fa-info-circle"></i>
-		</div>
+		</button>
+				<button id="local_weather" class="banner_buttons">
+			<i class="fa fa-cloud"></i>
+		</button>
 		
 	</div>
 	<div id="content">
@@ -190,8 +195,10 @@ $( document ).ready(function(){
 			<div id="rightMap">
 				<iframe width="600" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?q={{zipped.0.campground.latitude}},+{{zipped.0.campground.longitude}}&amp;hl=en&amp;ie=UTF8&amp;t=t&amp;ll={{zipped.0.campground.latitude}},{{zipped.0.campground.longitude}}&amp;spn=0.023746,0.051498&amp;z=12&amp;iwloc=z&amp;output=embed"></iframe><br /><small><a target="_blank" href="http://maps.google.com/maps?q={{zipped.0.campground.latitude}},+{{zipped.0.campground.longitude}}&amp;hl=en&amp;ie=UTF8&amp;t=m&amp;ll={{zipped.0.campground.latitude}},{{zipped.0.campground.longitude}}&amp;spn=0.023746,0.051498&amp;z=14&amp;iwloc=near&amp;source=embed" style="color:#0000FF;text-align:left">view on google <i class="fa fa-external-link-square"></i></a></small>
 			</div>
-			<div id="rightWeather">
+			<div id="rightWeather_table"> 
+				<div id="rightWeather">
 
+				</div>
 			</div>
 			<div id="rightDetails">
 				<ul>

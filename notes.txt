@@ -10,6 +10,7 @@ http://stackoverflow.com/questions/22313407/clang-error-unknown-argument-mno-fus
 > CLEAN UP THIS MESS OF CODE
 > get the scripts in a file
 > move some of the custom messages out of view and into templates
+> mobile UI
 
 UI Updates -
 > make left column always full height
@@ -17,10 +18,20 @@ UI Updates -
 
 Features -
 > Sortable left column
-> about div
+X about div
+> use urls instead of ugly get shit?
+
 
 
 
 <<<<<<<<  BUGS >>>>>>>>>>
 X Line 399, views.py, CHECK TO SEE if amenities even exists, right now it is trying to split a 'NoneType'
 > List of cities to choose from aint showing up
+> put in a # in the location field, see what happens!
+
+Critiques - 
+Kyle 
+inproper input for field 1 (location) shows an error differently than field 2 (distance)
+if you put a location that doesnt exist like #jasonisgay it will say 'i can't find #jasonisgay, sorry' on the page itself
+but if you put 'titties' in the distance field, it says 'enter a number' as a red error next to the field
+^ to summarize - the errors are not consistent, if it cant find a city, it says so on the 
