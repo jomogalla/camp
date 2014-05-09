@@ -88,6 +88,12 @@ $( document ).ready(function(){
 			$('#id_distance').val(parseInt($('#id_distance').val()) + 10)
 			$('#goButton').click();
 		});
+		$('#distance_sort').click(function(){
+
+		});
+		$('#alphabet_sort').click(function(){
+
+		});
 	});
 	function my_callback(data){
     	alert(data.message);
@@ -151,6 +157,10 @@ $( document ).ready(function(){
 		</div>
 		{% elif zipped%}
 		<div id="leftColumn">
+			<div id="sort_buttons">
+				<button id="alphabet_sort" class="banner_buttons">name</button>
+				<button id="distance_sort" class="banner_buttons">distance</button>
+			</div>
 		{% for infoBlob in zipped %}
 			<div class="camp {% if forloop.last%}last{% endif %}" id="{{forloop.counter0}}" >
 				{% load humanize %}
@@ -186,6 +196,7 @@ $( document ).ready(function(){
 			</div>	
 		{% endfor %}
 		</div>
+		<div class="clear"></div>
 		<div id="rightColumn">
 			<div id="rightTitle">
 				<span id="campName" >{{zipped.0.campground.name}}   </span>

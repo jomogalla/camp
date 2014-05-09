@@ -6,13 +6,21 @@
 	/*padding-left: 10px;*/
 	padding: 10px;
 	/*height: 100%;*/
-	background: rgba(255, 255, 255, 0.5);
+	/*background: rgba(255, 255, 255, 0.5);*/
 	/*box-shadow: 0.1em 0 0.6em #777777;*/
+	z-index: 100;
+	box-shadow: 6px 0px 12px 0px rgba(255, 255, 255, 0.5);
 }
 #rightColumn{
-	margin-left: 370px;
+	/*margin-left: 370px;*/
 	padding: 10px;
+	right: 0px;
+	top:50px;
+	bottom: 0px;
+	/*padding-left: 370px;*/
 	position: fixed;
+	margin-left: 360px;
+	z-index: 0;
 }
 #rightMap iframe{
 	border: #fcfcfc 2px solid;
@@ -22,7 +30,8 @@
 	position: fixed;
 	right: 10px;
 	top: 50px;
-	background-color: rgba(255, 249, 231, 0.95);
+	margin-top: 10px;
+	background-color: rgba(255, 250, 242, 1);
 	border-left: 1px solid #EEEDEC;
 	border-bottom: 1px solid #EEEDEC;
 	border-right: 1px solid #EEEDEC;
@@ -31,8 +40,9 @@
 	padding: 5px;
 	box-shadow: 0px 5px 30px 1px rgba(133, 133, 133, 0.10);
 	text-align: center;
-	background-image:url(images/noisy-texture.png);
+	/*background-image:url(images/noisy-texture.png);*/
 	z-index: 100;
+	box-shadow: inset 0px 10px 25px -4px rgba(0,0,0,0.05);
 }
 #info_box a{
 	color: black !important;
@@ -41,8 +51,7 @@
 	/*height: 10em;*/
 	border-top: 1px #999999 solid;
 	padding: 5px;
-	height: 9em;
-	display: table-cell;
+	/*display: table-cell;*/
 }
 #rightWeather_table{
 	width: 100%;
@@ -92,6 +101,7 @@
 #rightDetails ul{
 	margin: 0px;
 	padding: 0px;
+	text-align: center;
 }
 .helper{
 	position: fixed;
@@ -160,7 +170,7 @@
 	line-height: 1.5em;
 	/*background-image:url(images/noisy-texture-light.png);*/
 	background-color: #FFFCF9;
-	box-shadow: inset 0px 1px 0.1em 0px #B3B3B3;
+	box-shadow: inset 0px 1px 0.1em 0px rgba(179, 179, 179, 0.23);
 	padding-left: 0.5em;
 }
 .smallForm li{
@@ -189,7 +199,7 @@
 	/*color: #Fcfcfc;*/
 	color: #645B49;
 	/*font-weight: bold;*/
-	box-shadow: 0 10px 20px #ffffff;
+	box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
 	/*box-shadow: 0 0.1em 0.6em rgba(155, 155, 155, 0.48);*/
 	/*background-size: cover;*/
 	/*background-image: url(images/bannerback.png);*/
@@ -215,6 +225,7 @@
 }
 #local_weather{
 	float: right;
+	display: none;
 }
 
 .banner_buttons{
@@ -225,7 +236,7 @@
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
 	color: #645B49;
 	border: 0px;
-	margin-top: 15px;
+	/*margin-top: 15px;*/
 	font-size: 1.2em;
 }
 #goButton:hover{
@@ -244,7 +255,10 @@
 	margin-top: 15px;
 	font-size: 1.2em;
 	cursor: pointer;
-	color: rgba(100, 91, 73, 0.45);
+	color: rgba(151, 130, 88, 0.45);
+}
+#info:hover{
+	color: #645B49;
 }
 a{
 	text-decoration: none;
@@ -257,7 +271,7 @@ small a{
 #rightWeather i{
 	font-size: 8em;
 	width: 128px;
-	margin-left: auto;
+	margin-left: 40%;
 	margin-right: auto;
 	color: #645B49;
 }
@@ -361,7 +375,7 @@ small a{
 	padding:5px;
 }
 .camp:hover{
-	background: rgba(255, 255, 255, 1);
+	background: rgba(255, 255, 255, .75);
 	/*opacity: 0.6;*/
 	cursor: pointer;
 }
@@ -481,4 +495,46 @@ body{
 	margin: 0px;
 	background-color: #FFFCF9;
 	/*background-image:url(images/noisy-texture.png);*/
+}
+#sort_buttons{
+	display: none;
+}
+@media only screen and (max-width: 980px){
+	#leftColumn{
+		width: auto;
+		float: none;
+		height: auto;
+	}
+	#rightColumn{
+		margin-left: auto;
+		right: none;
+		top: none;
+		bottom: none;
+		padding-left: auto;
+		position: static;
+		margin-left: auto;
+		width: 100%
+	}
+	#rightMap{
+		width: 100%;
+		height: auto;
+	}
+	#info{
+		position: absolute;
+		margin-top: none;
+		right: 0px;
+		top: 0px;
+	}
+	.smallForm li{
+		display: block;
+		height: auto;
+
+	}
+	#banner{
+		height: auto;
+		line-height: auto;
+		position: static;
+		text-align: center;
+
+	}
 }
