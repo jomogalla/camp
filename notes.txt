@@ -1,3 +1,18 @@
+// Setting up the database.
+1 - Run this in the Heroku console -
+    heroku run python manage.py syncdb
+    (I did not install a superuser)
+
+2 - Open a local terminal and run
+	PGPASSWORD=PASSWORD psql -h HOSTNAME -U USERNAME DATABASE_NAME -c "\copy weather_zips FROM './data/editedzips.txt' (FORMAT CSV)"
+	PGPASSWORD=PASSWORD psql -h HOSTNAME -U USERNAME DATABASE_NAME -c "\copy weather_campground FROM './data/editedCamps.txt' (FORMAT CSV)"
+	PGPASSWORD=PASSWORD psql -h HOSTNAME -U USERNAME DATABASE_NAME -U wnyimozpjtyayh dc04r6fn8rm27d -c "\copy weather_city FROM './data/editedplaces.txt' (FORMAT CSV, DELIMITER('*'))"
+
+
+
+
+
+
 http://stackoverflow.com/questions/22313407/clang-error-unknown-argument-mno-fused-madd-python-package-installation-fa
 
 ^ psycopg2 wasnt installing that helped
